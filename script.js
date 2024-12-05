@@ -3,7 +3,7 @@ document.getElementsByClassName('hungerButton')[0].addEventListener('click', giv
 document.getElementsByClassName('joyButton')[0].addEventListener('click', playWithTama);
 document.getElementsByClassName('sleepButton')[0].addEventListener('click', sleepTama);
 document.getElementsByClassName('tamagoFace')[0].addEventListener('click',switchFace);
-
+getQuote();
 actualFood = parseInt(document.getElementsByClassName('tamagoNeedHunger')[0].innerHTML);
 actualSleep = parseInt(document.getElementsByClassName('tamagoNeedSleep')[0].innerHTML);
 actualJoy = parseInt(document.getElementsByClassName('tamagoNeedJoy')[0].innerHTML);
@@ -100,7 +100,7 @@ function dead(){
 
 }
 
-async function quote(){
+async function getQuote(){
     const url = 'https://luha.alwaysdata.net/api/';
     const options = {
         method: 'GET',
@@ -112,10 +112,11 @@ async function quote(){
         const response = await fetch(url, options);
         const result = await response.json();
         document.getElementsByClassName('textArea')[0].innerHTML = result.citation;
+
         console.log(result);
     } catch (error) {
         console.error(error);
     }
 }
 
-quote()
+
