@@ -13,7 +13,6 @@ setInterval(() => {joyDecreased();},4000);
 
 
 function switchFace(){
-    document.getElementsByClassName('textArea')[0].innerHTML = "Bouton fonctionnel";
     arrayOfFaces=['🐵','🐶','🐺','🐷','🐭','🦝','🐱','🐨','🐰','🐼'];
     document.getElementsByClassName('tamagoFace')[0].innerHTML = arrayOfFaces[Math.floor(Math.random()*arrayOfFaces.length)];
 
@@ -39,6 +38,7 @@ function sleepTama(){
     document.getElementsByClassName('joyButton')[0].disabled=true;
     document.getElementsByClassName('sleepButton')[0].disabled=true;
     document.getElementsByClassName('tamagoFace')[0].style.transform='rotate(90deg)';
+    document.getElementsByClassName('textArea')[0].innerHTML = "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ";
     setTimeout(wakeUp,6000);
     }
 }
@@ -80,6 +80,8 @@ function joyDecreased() {
 }
 
 function dead(){
+    document.getElementsByClassName('tamagoName')[0].removeEventListener('click', nameChange);
+    document.getElementsByClassName('tamagoFace')[0].removeEventListener('click', switchFace);
     document.getElementsByClassName('tamagoNeedSleep')[0].innerHTML = 0;
     document.getElementsByClassName('tamagoNeedJoy')[0].innerHTML = 0;
     document.getElementsByClassName('tamagoNeedHunger')[0].innerHTML = 0;
