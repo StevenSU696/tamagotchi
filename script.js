@@ -11,11 +11,9 @@ setInterval(() => {foodDecrease();}, 2000);
 setInterval(() => {sleepDecrease();}, 8000);
 setInterval(() => {joyDecreased();},4000);
 
-
 function switchFace(){
     arrayOfFaces=['🐵','🐶','🐺','🐷','🐭','🦝','🐱','🐨','🐰','🐼'];
     document.getElementsByClassName('tamagoFace')[0].innerHTML = arrayOfFaces[Math.floor(Math.random()*arrayOfFaces.length)];
-
 }
 function playWithTama(){
     if(actualJoy > 0)
@@ -28,6 +26,9 @@ function giveFood(){
     if(actualFood > 0){
     actualFood+=50;
     document.getElementsByClassName('tamagoNeedHunger')[0].innerHTML = actualFood;
+    document.getElementsByClassName('textArea')[0].innerHTML = 'Deeeelliciieuuuuxxx';
+    setTimeout(()=>{document.getElementsByClassName('textArea')[0].innerHTML ='';
+    }, 2000);
     }
 }
 function sleepTama(){
@@ -38,7 +39,7 @@ function sleepTama(){
     document.getElementsByClassName('joyButton')[0].disabled=true;
     document.getElementsByClassName('sleepButton')[0].disabled=true;
     document.getElementsByClassName('tamagoFace')[0].style.transform='rotate(90deg)';
-    document.getElementsByClassName('textArea')[0].innerHTML = "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ";
+   document.getElementsByClassName('textArea')[0].innerHTML = "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ";
     setTimeout(wakeUp,6000);
     }
 }
@@ -48,6 +49,8 @@ function wakeUp(){
     document.getElementsByClassName('joyButton')[0].disabled=false;
     document.getElementsByClassName('sleepButton')[0].disabled=false;
     document.getElementsByClassName('tamagoFace')[0].style.transform='rotate(0deg)';
+    document.getElementsByClassName('textArea')[0].innerHTML = "Haaaaa, j'ai bien dormi!";
+
 }
 
 function nameChange(){
@@ -96,3 +99,23 @@ function dead(){
     document.getElementsByClassName('tamagoName')[0].textContent='CADAVRE';
 
 }
+
+async function quote(){
+    const url = 'https://luha.alwaysdata.net/api/';
+    const options = {
+        method: 'GET',
+        headers: {
+        }
+    };
+
+    try {
+        const response = await fetch(url, options);
+        const result = await response.json();
+        document.getElementsByClassName('textArea')[0].innerHTML = result.citation;
+        console.log(result);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+quote()
